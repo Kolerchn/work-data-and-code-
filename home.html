@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/hover-min.css" />
+    <!-- lib -->
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/vue.min.js"></script>
+    <script src="./lib/fastclick.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div v-for="menu in menuArray" :class="getMenuClass(menu)" @click="menuClick(menu.url)">{{ menu.name }}</div>
+        </header>
+        <main>
+            <!-- 游戏未开启 （版块选择）-->
+            <section class="section-select" v-if="!play">
+                <div class="section-select-item" v-for="modeItem in modeArray" @click="modeSelect(modeItem)" :id="modeItem.name">
+                    {{ modeItem.name }}
+                </div>
+            </section>
+            <!-- 游戏已开始 -->
+            <section class="section-play" v-if="play"></section>
+            <!-- 游戏已结束 -->
+            <section class="section-result" v-if="result">
+                <div class="section-result-title">You Fail</div>
+                <div class="section-result-score">Score：{{ playForm.score }} ({{ activeMode.name }} Mode)</div>
+                <div class="section-result-input">Enter Name：<input type="text" v-model="playForm.userName" /></div>
+                <button class="section-result-button" @click="dataSave()">Save</button>
+                <button class="section-result-button" @click="initial()">Close</button>
+            </section>
+        </main>
+    </div>
+</body>
+<!-- js -->
+<script src="./mixin/common-mixin.js"></script>
+<script src="./js/home.js"></script>
+</html>

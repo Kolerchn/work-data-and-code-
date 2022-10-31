@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/report.css" />
+    <!-- lib -->
+    <script src="./lib/jquery.min.js"></script>
+    <script src="./lib/vue.min.js"></script>
+    <script src="./lib/echarts.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <header>
+            <div v-for="menu in menuArray" :class="getMenuClass(menu)" @click="menuClick(menu.url)">{{ menu.name }}</div>
+        </header>
+        <main class="report-containrer">
+            <div class="report-title-container">
+                <div class="report-title-section">
+                    <span :class="getActiveClass('Easy', activeMode)" @click="modeClick('Easy')">Easy Mode</span>
+                    <span :class="getActiveClass('Hard', activeMode)" @click="modeClick('Hard')">Hard Mode</span>
+                </div>
+                <div class="report-title-section">
+                    <span :class="getActiveClass('Table', activeType)" @click="typeClick('Table')">Table</span>
+                    <span :class="getActiveClass('Chart', activeType)" @click="typeClick('Chart')">Chart</span>
+                </div>
+            </div>
+            <table v-show="activeType == 'Table'" class="report-table">
+                <thead>
+                    <tr>
+                        <td>nickname</td>
+                        <td>date</td>
+                        <td>score</td>
+                        <td>reaction speed</td>
+                        <!-- <td>correct tracking %</td> -->
+                        <!-- <td>correct number</td> -->
+                        <td>during time</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="dataItem in (activeMode == 'Easy' ? easyArray : hardArray)">
+                        <td>{{ dataItem.userName }}</td>
+                        <td>{{ dateHandler(dataItem.startTime) }}</td>
+                        <td>{{ dataItem.score }}</td>
+                        <td>{{ dataItem.score > 0 ? (dataItem.remainTime / dataItem.score).toFixed(0) : 0 }}ms</td>
+                        <!-- <td>{{ (dataItem.score / dataItem.clickNum * 100).toFixed(2) }}%</td> -->
+                        <!-- <td>{{ dataItem.clickNum }}</td> -->
+                        <td>{{ parseInt((dataItem.endTime - dataItem.startTime) / 1000) }}s</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="report-chart" v-show="activeType == 'Chart'"></div>
+        </main>
+    </div>
+</body>
+<!-- js -->
+<script src="./mixin/common-mixin.js"></script>
+<script src="./js/report.js"></script>
+</html>

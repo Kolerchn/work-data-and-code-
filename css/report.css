@@ -1,0 +1,77 @@
+body {
+    background-color: #2E527E;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+.report-containrer {
+    margin: 5vh auto;
+    width: 96%;
+    height: 80vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #FFFFFF;
+    border: 10px solid #4472C4;
+    border-radius: 30px;
+}
+.report-title-container
+{
+    border-bottom: 3px solid #4472C4;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 20px;
+    margin-bottom: 15px;
+}
+.report-title-section
+{
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+}
+.report-title-item
+{
+    color: #000000;
+    cursor: pointer;
+    opacity: 0.5;
+    margin: 0px 20px;
+}
+.report-title-item-active
+{
+    color: #000000;
+    cursor: pointer;
+    margin: 0px 20px;
+}
+
+.report-table
+{
+    width: 95%;
+    margin: 0px auto;
+    border-collapse: collapse;
+}
+.report-table td
+{
+    border: 1px solid #FFFFFF;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 16px;
+}
+.report-table > thead
+{
+    background-color: #4472C4;
+    color: #FFFFFF;
+}
+.report-table > tbody > tr:nth-child(odd)
+{
+    background-color: #CFD5EA;
+}
+.report-table > tbody > tr:nth-child(even)
+{
+    background-color: #E9EBF5;   
+}
+#report-chart
+{
+    width: 80vw;
+    height: 68vh;
+    margin: 0px auto;
+}

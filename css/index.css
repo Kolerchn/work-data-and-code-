@@ -1,0 +1,12 @@
+#app
+{
+    width: 100vw; height: 100vh; display: flex; justify-content: center; align-items: center;
+}
+.start-icon
+{
+    max-width: 50vw; height: 50vh; cursor: pointer; transition: all 1s ease-in;
+}
+.start-icon:hover
+{
+    max-width: 60vw; height: 60vh;
+}
